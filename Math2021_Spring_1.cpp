@@ -68,9 +68,10 @@ int main()
 		std::cout << finalNumber - i << ", ";
 	}
 
-#ifdef __linux__
+	//make sure the window doesn't close by itself;
 	std::string test{};
 	std::cin >> test;
-#endif
+
+	//program executed successfully. 
 	return 0;
 }
