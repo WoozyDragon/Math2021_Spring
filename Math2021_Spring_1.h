@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <vector>
 
 //returns true if value is prime, false otherwise
 bool isPrime(int value);
