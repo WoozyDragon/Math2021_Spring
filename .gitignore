@@ -369,3 +369,6 @@ FodyWeavers.xsd
 .DS_Store
 desktop.ini
 
+# build directories
+build
+build-debug
