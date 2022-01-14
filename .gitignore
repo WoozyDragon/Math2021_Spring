@@ -364,3 +364,8 @@ FodyWeavers.xsd
 
 # Visual Studio Code cache/options directory
 .vscode
+
+# OS directory cache/config files
+.DS_Store
+desktop.ini
+
