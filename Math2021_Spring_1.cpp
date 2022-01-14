@@ -2,6 +2,10 @@
 
 #include "Math2021_Spring_1.h"
 
+// command line arguments stored as global variables
+int g_totalString{};
+int g_numberOfString{};
+bool g_noAutoReturn{};
 
 //returns true if value is prime, false otherwise;
 bool isPrime(int value)
@@ -28,28 +32,63 @@ bool isPrime(int value)
 	return true;
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-	//the length of the string of numbers we want. 
-	//asks for user input at the start of each run
-	int totalString{ 0 };
-
-	std::cout << "Please enter the length of the string on non-primes: ";
-	std::cin >> totalString;
-	if (totalString <= 1)
+	try //parse command line arguments
 	{
-		std::cout << "Please enter a number greater than 1";
+		TCLAP::CmdLine cmd(
+			"Consecutive Non-Prime Finder", //command discription
+			' ', //charater between flags and arguemnts
+			VERSION //version
+		);
+
+		TCLAP::ValueArg<int> lenArg(
+			"l", //short flag
+			"length", //long flag
+			"how many consecutive non-primes to generate per set", //discription
+			true, //required?
+			5, //default
+			"int (>1)" //human readable discription of type
+		);
+		cmd.add(lenArg);
+
+		TCLAP::ValueArg<int> numArg(
+			"c", //short flag
+			"count", //long flag
+			"how many sets to generate", //discription
+			false, //required?
+			1, //default
+			"int (>0)" //human readable discription of type
+		);
+		cmd.add(numArg);
+
+		TCLAP::SwitchArg waitArg(
+			"w", //short flag
+			"wait", //long flag
+			"waits for the user to hit return before returning", //discription
+			false //default
+		);
+		cmd.add(waitArg);
+
+		cmd.parse( argc, argv );
+
+		//store parsed command line args in global variables
+		g_totalString = lenArg.getValue();
+		g_numberOfString = numArg.getValue();
+		g_noAutoReturn = waitArg.getValue();
+
+	} catch (TCLAP::ArgException &e)  // catch exceptions
+	{ std::cerr << "error: " << e.error() << " for arg " << e.argId() << std::endl; }
+
+	// input sanity checks
+	if (g_totalString <= 1)
+	{
+		std::cout << "A length greater than 1 is required\n";
 		return 1;
 	}
-
-	//the number of strings to find.
-	//asks for user input at the start of each run
-	int numberOfString{ 0 };
-	std::cout << "Please enter the number of strings to find: ";
-	std::cin >> numberOfString;
-	if (numberOfString <= 0)
+	if (g_numberOfString <= 0)
 	{
-		std::cout << "Please enter a number greater than 0";
+		std::cout << "A count greater than 0 is required\n";
 		return 2;
 	}
 
@@ -76,14 +115,14 @@ int main()
 
 		//if the counter is the same length as our specified string length
 		//then we can add the result to our list
-		if (counter == totalString) {
+		if (counter == g_totalString) {
 			finalNumber.push_back(i);
 			
 			//reset the counter
 			counter = 0;
 			
-			//if we have numberOfString numbers, then we're good and can exit
-			if (finalNumber.size() >= numberOfString)
+			//if we have g_numberOfString numbers, then we're good and can exit
+			if (finalNumber.size() >= g_numberOfString)
 			{
 				break;
 			}
@@ -95,20 +134,21 @@ int main()
 	//the inside loop starts i at our string length, and decreases it from there
 	//this allows it to print out the numbers in order.
 	//the weirdness with one thing being outside the loop is to get rid of the ending comma
-	for (int j = 0; j < numberOfString; ++j)
+	for (int j = 0; j < g_numberOfString; ++j)
 	{
-		for (int i = totalString - 1; i >= 1; --i)
+		for (int i = g_totalString - 1; i >= 1; --i)
 		{
 			std::cout << finalNumber[j] - i << ", ";
 		}
 		std::cout << finalNumber[j] << '\n';
-
 	}
 	
-
-	//make sure the window doesn't close by itself;
-	std::string test{};
-	std::cin >> test;
+	//if the wait flag was used stop the program from terminating,
+	//mostly for windows to make sure the window doesn't close by itself;
+	if (g_noAutoReturn)
+	{
+		std::cin.get();
+	}
 
 	//program executed successfully. 
 	return 0;
