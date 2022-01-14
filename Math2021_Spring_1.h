@@ -10,6 +10,8 @@
 #include <cmath>
 #include <vector>
 
+#include "tclap/CmdLine.h"
+
 //returns true if value is prime, false otherwise
 bool isPrime(int value);
 
