@@ -1,4 +1,7 @@
-﻿#include "Math2021_Spring_1.h"
+﻿#define VERSION "2.0.0"
+
+#include "Math2021_Spring_1.h"
+
 
 //returns true if value is prime, false otherwise;
 bool isPrime(int value)
