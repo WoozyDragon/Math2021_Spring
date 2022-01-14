@@ -1,6 +1,6 @@
 ﻿#define VERSION "2.0.0"
 
-#include "Math2021_Spring_1.h"
+#include "nprimes.h"
 
 // command line arguments stored as global variables
 int g_totalString{};

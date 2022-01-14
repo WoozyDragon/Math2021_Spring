@@ -1,10 +1,10 @@
-﻿// Math2021_Spring_1.h : Include file for standard system include files,
+﻿// nprimes.h : Include file for standard system include files,
 // or project specific include files.
 
 #pragma once
 
-#ifndef MATH2021_SPRING_1_H
-#define MATH2021_SPRING_1_H
+#ifndef NPRIMES_H
+#define NPRIMES_H
 
 #include <iostream>
 #include <cmath>
