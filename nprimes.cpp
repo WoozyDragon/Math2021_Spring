@@ -10,8 +10,8 @@ bool g_noAutoReturn{};
 //returns true if value is prime, false otherwise;
 bool isPrime(int value)
 {
-	/*take the square root, becuase if we've reached the square root of a number 
-	* and haven't found any factors, the number is prime. 
+	/*take the square root, becuase if we've reached the square root of a number
+	* and haven't found any factors, the number is prime.
 	*/
 	int root{ (int) std::sqrt(value) + 1 };
 
@@ -20,7 +20,7 @@ bool isPrime(int value)
 	else if (value % 2 == 0) return false;
 	else if (value <= 1) return false;
 
-	//starting at three, go up until the root or greater. 
+	//starting at three, go up until the root or greater.
 	//Increment by two because even numbers will already have been removed by one of the edge cases
 	for (int i = 3; i <= root; i += 2)
 	{
@@ -37,35 +37,35 @@ int main(int argc, char *argv[])
 	try //parse command line arguments
 	{
 		TCLAP::CmdLine cmd(
-			"Consecutive Non-Prime Finder", //command discription
-			' ', //charater between flags and arguemnts
+			"Consecutive Non-Prime Finder", //command description
+			' ', //charater between flags and arguments
 			VERSION //version
 		);
 
 		TCLAP::ValueArg<int> lenArg(
 			"l", //short flag
 			"length", //long flag
-			"how many consecutive non-primes to generate per set", //discription
+			"how many consecutive non-primes to generate per set", //description
 			true, //required?
 			5, //default
-			"int (>1)" //human readable discription of type
+			"int (>1)" //human readable description of type
 		);
 		cmd.add(lenArg);
 
 		TCLAP::ValueArg<int> numArg(
 			"c", //short flag
 			"count", //long flag
-			"how many sets to generate", //discription
+			"how many sets to generate", //description
 			false, //required?
 			1, //default
-			"int (>0)" //human readable discription of type
+			"int (>0)" //human readable description of type
 		);
 		cmd.add(numArg);
 
 		TCLAP::SwitchArg waitArg(
 			"w", //short flag
 			"wait", //long flag
-			"waits for the user to hit return before returning", //discription
+			"waits for the user to hit return before returning", //description
 			false //default
 		);
 		cmd.add(waitArg);
@@ -117,10 +117,10 @@ int main(int argc, char *argv[])
 		//then we can add the result to our list
 		if (counter == g_totalString) {
 			finalNumber.push_back(i);
-			
+
 			//reset the counter
 			counter = 0;
-			
+
 			//if we have g_numberOfString numbers, then we're good and can exit
 			if (finalNumber.size() >= g_numberOfString)
 			{
@@ -142,7 +142,7 @@ int main(int argc, char *argv[])
 		}
 		std::cout << finalNumber[j] << '\n';
 	}
-	
+
 	//if the wait flag was used stop the program from terminating,
 	//mostly for windows to make sure the window doesn't close by itself;
 	if (g_noAutoReturn)
@@ -150,6 +150,6 @@ int main(int argc, char *argv[])
 		std::cin.get();
 	}
 
-	//program executed successfully. 
+	//program executed successfully.
 	return 0;
 }
