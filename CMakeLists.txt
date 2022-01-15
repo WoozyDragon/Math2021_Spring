@@ -15,8 +15,8 @@ add_executable (nprimes "nprimes.cpp" "nprimes.h")
 target_include_directories(nprimes PRIVATE "./include")
 
 target_compile_options(nprimes PRIVATE
-  $<$<CXX_COMPILER_ID:MSVC>:/W4>
-  $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic>
+  $<$<CXX_COMPILER_ID:MSVC>:/W4 /O2>
+  $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic -O2>
 )
 
 # TODO: Add tests and install targets if needed.
