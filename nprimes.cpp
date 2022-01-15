@@ -98,6 +98,14 @@ int main(int argc, char *argv[])
 	//a storage box for our final string(s)
 	std::vector <int> finalNumber;
 
+	// unsigned version of number of string needed to compare against
+	// size of vector without compiler warnings
+	// the input sanity checks should already guaranty this is positive
+	unsigned int unsigned_numberOfString
+	{
+		static_cast<unsigned int>(g_numberOfString)
+	};
+
 	//start our counter at two and try every number
 	//goes on forever (while(true) loop with a bit of extra stuff)
 	for (int i = 2; true; ++i)
@@ -122,7 +130,7 @@ int main(int argc, char *argv[])
 			counter = 0;
 
 			//if we have g_numberOfString numbers, then we're good and can exit
-			if (finalNumber.size() >= g_numberOfString)
+			if (finalNumber.size() >= unsigned_numberOfString)
 			{
 				break;
 			}
