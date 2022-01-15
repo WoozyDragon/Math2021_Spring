@@ -14,4 +14,9 @@ add_executable (nprimes "nprimes.cpp" "nprimes.h")
 # add local include folder to nprimes target
 target_include_directories(nprimes PRIVATE "./include")
 
+target_compile_options(nprimes PRIVATE
+  $<$<CXX_COMPILER_ID:MSVC>:/W4>
+  $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic>
+)
+
 # TODO: Add tests and install targets if needed.
