@@ -361,3 +361,14 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Visual Studio Code cache/options directory
+.vscode
+
+# OS directory cache/config files
+.DS_Store
+desktop.ini
+
+# build directories
+build
+build-debug
