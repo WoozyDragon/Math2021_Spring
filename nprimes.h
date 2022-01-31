@@ -12,10 +12,6 @@
 
 #include "tclap/CmdLine.h"
 
-extern int g_totalString;
-extern int g_numberOfString;
-extern bool g_noAutoReturn;
-
 //returns true if value is prime, false otherwise
 bool isPrime(int value);
 
