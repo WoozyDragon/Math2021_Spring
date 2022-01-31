@@ -1,4 +1,4 @@
-﻿#define VERSION 0.1.0
+﻿#define VERSION "0.1.0"
 #include "nprimes.h"
 
 //returns true if value is prime, false otherwise;
@@ -58,7 +58,7 @@ int main(int argc, char* argv[])
 		TCLAP::CmdLine cmd(
 			"GCD finder", //command description
 			' ', //charater between flags and arguments
-			version=VERSION //version
+			VERSION //version
 		);
 
 		TCLAP::ValueArg<int> argA(
@@ -94,16 +94,17 @@ int main(int argc, char* argv[])
 	}
 
 	// input sanity checks
-	if (argA < 1)
+	if (g_argA < 1)
 	{
-		std::cout << "A length greater than 1 is required\n";
+		std::cout << "A first parameter greater than 1 is required\n";
 		return 1;
 	}
-	if (argB < 1)
+	if (g_argB < 1)
 	{
-		std::cout << "A count greater than 1 is required\n";
+		std::cout << "A second parameter greater than 1 is required\n";
 		return 2;
 	}
-	std::cout << getGCD(argA, argB);
+
+	std::cout << getGCD(g_argA, g_argB);
 	return 0;
 }
